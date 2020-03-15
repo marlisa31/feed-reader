@@ -8,7 +8,7 @@
 
 // The names and URLs to all of the feeds we'd like available.
 var allFeeds = [
-    {
+		{
         name: 'Udacity Blog',
         url: 'http://blog.udacity.com/feed'
     }, {
@@ -122,7 +122,7 @@ $(function() {
         $('body').addClass('menu-hidden');
         loadFeed(item.data('id'));
         return false;
-    });
+    });12
 
     /* When the menu icon is clicked on, we need to toggle a class
      * on the body to perform the hiding/showing of our menu.

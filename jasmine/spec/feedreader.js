@@ -14,7 +14,7 @@ $(function() {
     * feeds definitions, the allFeeds variable in our application.
     */
     describe('RSS Feeds', function() {
-				 // ensure allFeeds variable is defined and it isn't empty
+				 // ensure allFeeds variable is defined and it is not empty
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
@@ -25,6 +25,14 @@ $(function() {
 						for (const feed of allFeeds) {
 							expect(feed.url).toBeDefined();
 							expect(feed.url.length).not.toBe(0);
+						}
+				});
+
+				// ensure each feed has a name defined and the name is not empty
+				it('have a name', function() {
+						for (const feed of allFeeds) {
+							expect(feed.name).toBeDefined();
+							expect(feed.name.length).not.toBe(0);
 						}
 				});
 

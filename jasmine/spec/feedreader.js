@@ -1,18 +1,6 @@
-/* feedreader.js
- *
- * This is the spec file that Jasmine will read and contains
- * all of the tests that will be run against your application.
- */
-
-/* We're placing all of our tests within the $() function,
- * since some of these tests may require DOM elements. We want
- * to ensure they don't run until the DOM is ready.
- */
+// ensure to not run tests before the DOM is ready
 $(function() {
-    /* This is our first test suite - a test suite just contains
-    * a related set of tests. This suite is all about the RSS
-    * feeds definitions, the allFeeds variable in our application.
-    */
+		// RSS feed definitions
     describe('RSS Feeds', function() {
 				 // ensure allFeeds variable is defined and it is not empty
         it('are defined', function() {
@@ -35,28 +23,35 @@ $(function() {
 							expect(feed.name.length).not.toBe(0);
 						}
 				});
-
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
     });
 
+		// burger menu
+		describe('The menu', function() {
+				const bodyEl = document.querySelector('body');
 
-    /* TODO: Write a new test suite named "The menu" */
+				it('is hidden by default', function() {
+						// check if body has the class "menu-hidden" on page load and hence menu is hidden
+						// spyOn(window, 'open');
+						expect(bodyEl.classList.contains('menu-hidden')).toBe(true);
+				});
 
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
+				it('changes visibility when the menu icon is clicked', function() {
+						// test toggle functionality
+						const burgerIcon = document.querySelector('.menu-icon-link');
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
+						// first, third, ... (even) click
+						burgerIcon.click();
+						expect(bodyEl.classList.contains('menu-hidden')).not.toBe(true);
 
+						// second, fourth, ... (odd) click
+						burgerIcon.click();
+						expect(bodyEl.classList.contains('menu-hidden')).toBe(true);
+				});
+		});
+
+		describe('Initial Entries', function() {
+
+		});
     /* TODO: Write a new test suite named "Initial Entries" */
 
         /* TODO: Write a test that ensures when the loadFeed

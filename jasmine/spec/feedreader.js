@@ -39,27 +39,31 @@ $(function() {
 						// test toggle functionality
 						const burgerIcon = document.querySelector('.menu-icon-link');
 
-						// first, third, ... (even) click
+						// first, third, ... (odd) click
 						burgerIcon.click();
 						expect(bodyEl.classList.contains('menu-hidden')).not.toBe(true);
 
-						// second, fourth, ... (odd) click
+						// second, fourth, ... (even) click
 						burgerIcon.click();
 						expect(bodyEl.classList.contains('menu-hidden')).toBe(true);
 				});
 		});
 
+		// initial entries of the feed reader
 		describe('Initial Entries', function() {
+			beforeEach(function(done) {
+				loadFeed(0, function() {
+						done();
+				});
+			});
+			it('have at least one single entry element within the feed container', function(done) {
+				const container = document.querySelector('.feed');
 
+				// test if at least one entry element exists
+				expect(container.children[0].children[0].classList.contains('entry')).toBe(true);
+				done();
+			});
 		});
-    /* TODO: Write a new test suite named "Initial Entries" */
-
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 

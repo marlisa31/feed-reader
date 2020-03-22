@@ -42,6 +42,7 @@ $(function() {
 						// check if body has the class "menu-hidden" and menu hence is hidden
 						expect(bodyEl.classList.contains('menu-hidden')).toBe(true);
 				});
+
 				// test toggle functionality
 				it('changes visibility when the menu icon is clicked', function() {
 						const burgerIcon = document.querySelector('.menu-icon-link');
@@ -50,7 +51,7 @@ $(function() {
 						burgerIcon.click();
 						expect(bodyEl.classList.contains('menu-hidden')).not.toBe(true);
 
-						// simulate second  click
+						// simulate second click
 						burgerIcon.click();
 						expect(bodyEl.classList.contains('menu-hidden')).toBe(true);
 				});
@@ -91,7 +92,7 @@ $(function() {
 
 			// load feed twice
 			beforeEach(function(done) {
-				
+
 				// load feed content for the first time
 				loadFeed(0, function() {
 					oldContent = document.querySelector('.feed').textContent;

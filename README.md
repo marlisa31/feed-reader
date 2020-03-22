@@ -21,4 +21,8 @@ The following seven tests were implemented:
 
 ## How to run the application
 
-Download the repository and open `index.html` in your browser (you can find the file in the root folder of the repository). The Jasmine tests are displayed at the bottom of the page. Functionalities are written in `app.js` (js sub folder) whereas tests are written in `feedreader.js` which is located in the jasmine > spec folder. In addition a [GitHub page](https://marlisa31.github.io/feed-reader/) was prepared through which the SpecRunner (`index.html`) can be accessed as well.
+### Quickstart
+Access this [GitHub page](https://marlisa31.github.io/feed-reader/). It shows the SpecRunner (`index.html`). Scroll to the bottom of the page to see the Jasmine tests.
+
+### Download
+Download the repository and open `index.html` in your browser (you can find the file in the root folder of the repository). The Jasmine tests are displayed at the bottom of the page. Functionalities are written in `app.js` (js sub folder) whereas tests are written in `feedreader.js` which is located in the jasmine > spec folder.

@@ -3,7 +3,7 @@
 ## Table of Contents
 
 - [Overview](#overview)
-- [Run](#run)
+- [How to run the application](#how-to-run-the-application)
 
 
 ## Overview

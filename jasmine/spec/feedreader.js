@@ -73,8 +73,7 @@ $(function() {
 
 			// test once asynchronous function is complete
 			it('have at least one single entry element within the feed container', function(done) {
-				const entryEl = document.querySelector('.feed .entry').textContent;
-
+				const entryEl = document.querySelectorAll('.feed .entry');
 				// test if at least one entry element exists which is not empty
 				expect(entryEl.length).toBeGreaterThan(0);
 				done();

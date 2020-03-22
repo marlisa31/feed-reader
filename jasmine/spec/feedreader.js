@@ -1,6 +1,10 @@
 // ensure to not run tests before the DOM is ready
 $(function() {
-		// RSS feed definitions
+
+	/*_________________________
+	RSS feed definitions
+	_________________________*/
+
     describe('RSS Feeds', function() {
 				 // ensure allFeeds variable is defined and it is not empty
         it('are defined', function() {
@@ -9,7 +13,7 @@ $(function() {
         });
 
 				// ensure each feed has a URL defined and the URL is not empty
-				it('have a URL', function() {
+				it('have a URL and the URL is not an empty string', function() {
 						for (const feed of allFeeds) {
 							expect(feed.url).toBeDefined();
 							expect(feed.url.length).not.toBe(0);
@@ -17,7 +21,7 @@ $(function() {
 				});
 
 				// ensure each feed has a name defined and the name is not empty
-				it('have a name', function() {
+				it('have a name and the name is not an empty string', function() {
 						for (const feed of allFeeds) {
 							expect(feed.name).toBeDefined();
 							expect(feed.name.length).not.toBe(0);
@@ -25,50 +29,85 @@ $(function() {
 				});
     });
 
-		// burger menu
+
+		/*_________________________
+		burger menu
+		_________________________*/
+
 		describe('The menu', function() {
 				const bodyEl = document.querySelector('body');
 
+				// test default visibility
 				it('is hidden by default', function() {
-						// check if body has the class "menu-hidden" on page load and hence menu is hidden
-						// spyOn(window, 'open');
+						// check if body has the class "menu-hidden" and menu hence is hidden
 						expect(bodyEl.classList.contains('menu-hidden')).toBe(true);
 				});
-
+				// test toggle functionality
 				it('changes visibility when the menu icon is clicked', function() {
-						// test toggle functionality
 						const burgerIcon = document.querySelector('.menu-icon-link');
 
-						// first, third, ... (odd) click
+						// simulate first click
 						burgerIcon.click();
 						expect(bodyEl.classList.contains('menu-hidden')).not.toBe(true);
 
-						// second, fourth, ... (even) click
+						// simulate second  click
 						burgerIcon.click();
 						expect(bodyEl.classList.contains('menu-hidden')).toBe(true);
 				});
 		});
 
-		// initial entries of the feed reader
+
+		/*_________________________
+		initial entries of the feed reader
+		_________________________*/
+
 		describe('Initial Entries', function() {
+
+			// wait for asynchronous function to complete
 			beforeEach(function(done) {
 				loadFeed(0, function() {
-						done();
+					done();
 				});
 			});
-			it('have at least one single entry element within the feed container', function(done) {
-				const container = document.querySelector('.feed');
 
-				// test if at least one entry element exists
-				expect(container.children[0].children[0].classList.contains('entry')).toBe(true);
+			// test once asynchronous function is complete
+			it('have at least one single entry element within the feed container', function(done) {
+				const entryEl = document.querySelector('.feed .entry').textContent;
+
+				// test if at least one entry element exists which is not empty
+				expect(entryEl.length).toBeGreaterThan(0);
 				done();
 			});
 		});
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+		/*_________________________
+		new feed content on update
+		_________________________*/
+
+		describe('New Feed Selection', function() {
+			let oldContent;
+			let newContent;
+
+			// load feed twice
+			beforeEach(function(done) {
+				
+				// load feed content for the first time
+				loadFeed(0, function() {
+					oldContent = document.querySelector('.feed').textContent;
+
+					// load feed content for the second time
+					loadFeed(1, function() {
+						newContent = document.querySelector('.feed').textContent;
+						done();
+					});
+				});
+			});
+
+			// test if loaded feeds differ from each other
+			it('is displayed when the loadFeed function loads a new feed', function(done) {
+				expect(oldContent).not.toEqual(newContent);
+				done();
+			});
+		});
 }());
